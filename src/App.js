@@ -14,8 +14,8 @@ class App extends Component {
           <header>
           <h1>HungOver Hangman</h1>
           </header>
-          <Route exact path="/hangman" component={HangmanContainer}/>
           <Route exact path="/" component={WelcomePage}/>
+          <Route exact path="/hangman" component={HangmanContainer}/>
         </div>
       </Provider>
     );

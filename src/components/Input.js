@@ -1,56 +1,51 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import * as React from 'react'
+import {connect} from 'react-redux'
+import {handleSubmit} from '../actions/game'
 
-class Input extends PureComponent {
-constructor(props) {
-    super()
 
-    const guess = props
+export default class Input extends React.PureComponent {
+  state = {letter: ''}
 
-    this.state = guess
+  handleSubmit = (submitLetter) => {
+    //submitLetter.preventDefault()
+    //if (this.state.letter.length === 1) {
+      //this.handleSubmit(this.state.letter.toLowerCase())
+    this.setState({ letter: submitLetter })
+    //}
   }
 
-  updateGuess(event) {
-    if (event.keyCode === 13) {
-      this.saveGuess()
-    }
+  handleChange = (submitLetter) => {
+    this.setState({ [submitLetter.target.name]: submitLetter.target.value })
   }
 
-  saveGuess() {
-    const { word } = this.props
-    var myRE = /^[a-z]+$/i;
-    const guess = this.refs.guess.value.toLowerCase()
-
-    if (guess === word) return this.props.isWinner()
-    if (guess.match(myRE)) this.props.save(guess)
-    this.refs.guess.value = null
-  }
-
-  render() {
-    return(
-      <div className="editor">
-        <input
-          type="text"
-          ref="guess"
-          className="guess"
-          placeholder="Make a guess"
-          defaultValue={this.state.guess}
-          onChange={this.updateGuess.bind(this)}
-          onKeyDown={this.updateGuess.bind(this)}/>
-
-          <div className="actions">
-            <button className="primary" type="submit" onClick={this.saveGuess.bind(this)}>Guess</button>
-          </div>
-      </div>
-    )
-  }
-}
-
-const mapStateToProps = ( { guesses, word } ) => {
-  return {
-    guesses,
-    word
+render() {
+    return (<div className="letterButtons" >
+      <button className="guesses" onClick={this.handleSubmit('a')}>A</button>
+      <button className="guesses" onClick={this.handleSubmit('b')}>B</button>
+      <button className="guesses" onClick={this.handleSubmit('c')}>C</button>
+      <button className="guesses" onClick={this.handleSubmit('d')}>D</button>
+      <button className="guesses" onClick={this.handleSubmit('e')}>E</button>
+      <button className="guesses" onClick={this.handleSubmit('f')}>F</button>
+      <button className="guesses" onClick={this.handleSubmit('g')}>G</button>
+      <button className="guesses" onClick={this.handleSubmit('h')}>H</button>
+      <button className="guesses" onClick={this.handleSubmit('i')}>I</button>
+      <button className="guesses" onClick={this.handleSubmit('j')}>J</button>
+      <button className="guesses" onClick={this.handleSubmit('k')}>K</button>
+      <button className="guesses" onClick={this.handleSubmit('l')}>L</button>
+      <button className="guesses" onClick={this.handleSubmit('m')}>M</button>
+      <button className="guesses" onClick={this.handleSubmit('n')}>N</button>
+      <button className="guesses" onClick={this.handleSubmit('o')}>O</button>
+      <button className="guesses" onClick={this.handleSubmit('p')}>P</button>
+      <button className="guesses" onClick={this.handleSubmit('q')}>Q</button>
+      <button className="guesses" onClick={this.handleSubmit('r')}>R</button>
+      <button className="guesses" onClick={this.handleSubmit('s')}>S</button>
+      <button className="guesses" onClick={this.handleSubmit('t')}>T</button>
+      <button className="guesses" onClick={this.handleSubmit('u')}>U</button>
+      <button className="guesses" onClick={this.handleSubmit('v')}>V</button>
+      <button className="guesses" onClick={this.handleSubmit('w')}>W</button>
+      <button className="guesses" onClick={this.handleSubmit('x')}>X</button>
+      <button className="guesses" onClick={this.handleSubmit('y')}>Y</button>
+      <button className="guesses" onClick={this.handleSubmit('z')}>Z</button>
+    </div>)
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Input)

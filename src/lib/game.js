@@ -269,3 +269,11 @@ export const wordList = [
 export const randomWord = () => {
   return wordList[Math.floor(Math.random() * wordList.length)]
 }
+
+export const alphabet = (charA, charZ) => {
+    var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+    for (; i <= j; ++i) {
+        a.push(String.fromCharCode(i));
+    }
+    return a;
+}

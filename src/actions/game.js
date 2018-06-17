@@ -1,37 +1,18 @@
-import {randomWord} from '../lib/game.js'
-
 export const NEW_GAME = 'NEW_GAME'
 export const MAKE_GUESS = 'MAKE_GUESS'
-export const IS_WINNER = 'SET_WORD'
-export const GAME_OVER = 'GAME_OVER'
 
-export function newGame(word, guesses) {
-  const random = randomWord().toString()
+export function newGame(newWord) {
   return {
     type: NEW_GAME,
-    payload: {
-      word: random,
-      guesses: []
-    }
+    payload: newWord
   }
 }
 
-export function makeGuess(guesses) {
+export function makeGuess(newLetter) {
   return {
     type: MAKE_GUESS,
-    payload: guesses
+    payload: newLetter
   }
 }
 
-export const isWinner = boolean => {
-  return {
-    type: IS_WINNER,
-    payload: boolean
-  }
-}
-
-export function gameOver() {
-  return {
-    type: GAME_OVER
-  }
-}
+//store.dispatch(makeGuess)

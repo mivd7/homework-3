@@ -1,44 +1,50 @@
-import React, {PureComponent} from 'react'
-import { connect } from 'react-redux'
+import * as React from 'react'
 import Hangman from './Hangman'
-import {IS_WINNER} from '../actions/game.js' 
-
-class HangmanContainer extends PureComponent {
-    gameStatus(props) {
-      const { isWinner } = this.props
-
-      if (isWinner === null) return (
-        <div className="gameProgress">
-          <Hangman />
-        </div>
-      )
-
-      if (!isWinner) return (
-        <div className="gameOver">
-          <p>'You got hung!'</p>
-        </div>
-      )
-
-      if (isWinner) return (
-        <div className="winner">
-          <p>'EPIC WIN!'</p>
-        </div>
-      )
-    }
+import Input from './Input'
+import * as Logic from  '../lib/game'
+import {connect} from 'react-redux'
+import {newGame} from '../actions/game'
 
 
-    render() {
-      return(
-        <div
-
-        </div>
-      )
-    }
+class HangmanContainer extends React.PureComponent {
+  state = {
   }
 
-  const mapStateToProps = ( { isWinner } ) => {
-    return {
-      isWinner
+  componentDidMount(){
+    this.startNewGame()
+  }
+
+  startNewGame =() => {
+    const randomword = Logic.randomWord()
+    this.props.newGame(randomword)
+  }
+
+
+  render() {
+  //const guessedWord = Logic.randomWord()
+  const guessedWord = "ASBSHBJF"
+  const guessedLetters = []
+
+    if(this.props.word==='') {
+      return 'Loading...'
+    }else {
+      return (<div>
+        {Logic.showGuess(guessedWord, guessedLetters)}
+        <Input />
+        <button onClick = {this.startNewGame}>Start New Game</button>
+        <Hangman />
+      </div>
+    )
     }
   }
-  export default connect(mapStateToProps)(HangmanContainer)
+}
+
+
+const mapStateToProps = (state) => {
+  return {
+    word: state.word,
+    guesses: state.guesses
+  }
+}
+
+export default connect(mapStateToProps, {newGame} )(HangmanContainer)

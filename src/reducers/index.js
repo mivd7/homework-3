@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux'
-import word from './word'
-import guesses from './guesses'
-import isWinner from './isWinner'
+import guessedLetters from './guessedLetters'
+import wordGuess from './wordGuess'
 
 export default combineReducers({
-  activeWord,
-  wrongGuessCount,
-  isWinner,
-  wrongGuessLimit,
-  gameFinished
+  guessedLetters,
+  wordGuess
 })
