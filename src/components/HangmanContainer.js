@@ -7,8 +7,6 @@ import {newGame} from '../actions/game'
 
 
 class HangmanContainer extends React.PureComponent {
-  state = {
-  }
 
   componentDidMount(){
     this.startNewGame()
@@ -22,8 +20,8 @@ class HangmanContainer extends React.PureComponent {
 
   render() {
   //const guessedWord = Logic.randomWord()
-  const guessedWord = "ASBSHBJF"
-  const guessedLetters = []
+  const guessedWord = Logic.randomWord()
+  const guessedLetters = 'A'
 
     if(this.props.word==='') {
       return 'Loading...'

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {handleSubmit} from '../actions/game'
+import {makeGuess} from '../actions/game.js'
 
 
-export default class Input extends React.PureComponent {
-  state = {letter: ''}
+class Input extends React.PureComponent {
+  state = {}
 
   handleSubmit = (submitLetter) => {
     //submitLetter.preventDefault()
@@ -49,3 +49,5 @@ render() {
     </div>)
   }
 }
+
+export default connect(null, {makeGuess} )(Input)

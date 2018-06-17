@@ -14,5 +14,3 @@ export function makeGuess(newLetter) {
     payload: newLetter
   }
 }
-
-//store.dispatch(makeGuess)
